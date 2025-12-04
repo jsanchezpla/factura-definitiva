@@ -1,0 +1,71 @@
+.form-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.form-container section,.poblacion-nif section,.factura-datos section{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: 2%;
+}
+
+.poblacion-nif{
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    justify-content: space-between;
+}
+
+.form-container section:first-of-type {
+    margin-bottom: 1%;
+}
+
+select{
+    font-size: large;
+}
+
+p{
+    font-size: large;
+}
+
+
+.factura-datos{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3%;
+}
+
+label{
+    font-size: x-large;
+}
+
+table {
+  border-collapse: collapse;
+  border: 2px solid rgb(140 140 140);
+  font-family: sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+}
+
+th,
+td {
+  border: 1px solid rgb(160 160 160);
+  padding: 8px 10px;
+  font-size: large;
+}
+
+.form-container section,
+.poblacion-nif section,
+.factura-datos section {
+    align-items: center;
+}
+

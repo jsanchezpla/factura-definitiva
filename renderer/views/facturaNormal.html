@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="../../css/styles.css">
+</head>
+
+<body>
+    <button onclick="window.location.href='inicio.html'">Volver</button>
+    <h1>Factura 1</h1>
+
+    <div class="container">
+        <div class="factura-datos">
+            <section>
+                <label>FACTURA Nº</label>
+                <input type="text">
+            </section>
+            <section>
+                <label>Fecha</label>
+                <input type="date">
+            </section>
+        </div>
+        <div class="form-container">
+            <section>
+                <label>D:</label>
+                <select id="d-select" name="select">
+                </select>
+            </section>
+            <section>
+                <label>Domicilio:</label>
+                <p id="domicilio"></p>
+            </section>
+            <div class="poblacion-nif">
+                <section>
+                    <label>Población:</label>
+                    <p id="poblacion"></p>
+                </section>
+                <section>
+                    <label>NIF:</label>
+                    <p id="nif"></p>
+                </section>
+            </div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col" rowspan="2">Concepto</th>
+                    <th scope="col">€</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="albaran"></td>
+                    <td id="precio"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div>
+            <section>
+                <p id="suma"></p>
+                <p id="iva"></p>
+                <p id="total"></p>
+            </section>
+        </div>
+    </div>
+
+
+    <script src="../js/facturaNormal.js"></script>
+</body>
+
+</html>
