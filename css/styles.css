@@ -12,7 +12,7 @@
 .container{
     display: flex;
     flex-direction: column;
-    width: 90%;
+    width: 95%;
     margin: 2%;
 }
 
@@ -56,6 +56,14 @@ table {
   letter-spacing: 1px;
 }
 
+.td-flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+}
+
 th,
 td {
   border: 1px solid rgb(160 160 160);
@@ -67,5 +75,22 @@ td {
 .poblacion-nif section,
 .factura-datos section {
     align-items: center;
+}
+
+.buttons{
+    display: flex;
+}
+
+.buttons button{
+    width: 100%;
+    font-size: medium;
+    font-weight: bold;
+}
+
+.totals{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
 }
 

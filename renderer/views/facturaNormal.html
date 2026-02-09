@@ -42,6 +42,11 @@
                 </section>
             </div>
         </div>
+        <div class="buttons">
+            <button id="add-button">Añadir fila</button>
+            <button id="remove-button">Eliminar fila</button>
+        </div>
+
         <table>
             <thead>
                 <tr>
@@ -49,16 +54,12 @@
                     <th scope="col">€</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td id="albaran"></td>
-                    <td id="precio"></td>
-                </tr>
+            <tbody id="table-body">
             </tbody>
         </table>
 
         <div>
-            <section>
+            <section class="totals">
                 <p id="suma"></p>
                 <p id="iva"></p>
                 <p id="total"></p>
