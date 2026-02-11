@@ -1,96 +1,379 @@
-.form-container{
+/* ==========================================================================
+   1. CONFIGURACIÓN GLOBAL Y RESET
+   ========================================================================== */
+* {
+    box-sizing: border-box;
+    /* 1. Solución al bug de las "l" y "I" gruesas: Forzar suavizado de fuentes */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    /* 2. Usar fuentes más seguras y legibles para números y facturas */
+    font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.4;
+    /* 3. Asegurar que el grosor base sea normal */
+    font-weight: 400; 
+}
+
+/* Evitar usar font-weight: bold indiscriminadamente si la fuente falla. Usamos 600 (Semi-bold) */
+label, .company-name, .totals, th, .price, input[readonly] {
+    font-weight: 600 !important; 
+}
+
+h1 { text-align: center; margin-bottom: 20px; }
+
+/* ==========================================================================
+   2. DASHBOARD (Menú Principal)
+   ========================================================================== */
+.dashboard-body {
+    height: 100vh;
     display: flex;
-    flex-direction: column;
-}
-
-.form-container section,.poblacion-nif section,.factura-datos section{
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-}
-
-.container{
-    display: flex;
-    flex-direction: column;
-    width: 95%;
-    margin: 2%;
-}
-
-.poblacion-nif{
-    display: flex;
-    flex-direction: row;
-    align-items: end;
-    justify-content: space-between;
-}
-
-.form-container section:first-of-type {
-    margin-bottom: 1%;
-}
-
-select{
-    font-size: large;
-}
-
-p{
-    font-size: large;
-}
-
-
-.factura-datos{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    margin-bottom: 3%;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    overflow: hidden;
 }
 
-label{
-    font-size: x-large;
+.dashboard-container {
+    text-align: center;
+    width: 90%;
+    max-width: 1100px;
 }
 
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    padding: 20px 0;
+}
+
+.menu-card {
+    background: white;
+    border: none;
+    border-radius: 15px;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    padding: 20px;
+}
+
+.menu-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+.menu-card .icon { font-size: 5rem; margin-bottom: 10px; }
+.menu-card h2 { margin: 0; font-size: 1.5rem; }
+
+/* ==========================================================================
+   3. CABECERA DE FACTURA (Logo y Empresa)
+   ========================================================================== */
+.invoice-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background: white;
+    padding: 15px 20px;
+    border-bottom: 3px solid #1a4a7c;
+    margin-bottom: 5px;
+}
+
+.company-name { color: #1a4a7c; font-style: italic; font-size: 1.6rem; margin: 0; }
+.company-legal { color: #1a4a7c; margin: 0 0 5px 0; }
+.company-data p { font-size: 0.85rem; margin: 2px 0; }
+
+.company-logo { flex: 1; display: flex; justify-content: center; }
+.company-logo img {
+    width: 280px; /* Tamaño grande solicitado */
+    height: auto;
+    object-fit: contain;
+}
+
+/* ==========================================================================
+   4. DATOS DEL CLIENTE Y FACTURA
+   ========================================================================== */
+.container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+.factura-datos, .form-container section, .poblacion-nif {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 0px;
+}
+
+.factura-datos { justify-content: space-between; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+.poblacion-nif { justify-content: space-between; }
+
+label { font-weight: bold; color: #555; }
+input, select { padding: 6px; border: 1px solid #ccc; border-radius: 4px; }
+
+/* ==========================================================================
+   5. TABLA (Estilo Compacto Excel)
+   ========================================================================== */
 table {
-  border-collapse: collapse;
-  border: 2px solid rgb(140 140 140);
-  font-family: sans-serif;
-  font-size: 0.8rem;
-  letter-spacing: 1px;
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
 }
 
+th {
+    background-color: #333;
+    color: white;
+    padding: 8px;
+    border: 1px solid #555;
+}
+
+td {
+    border: 1px solid #ccc;
+    padding: 2px 5px; /* Celdas finas */
+    text-align: center;
+    height: 30px;
+}
+
+/* Alineaciones internas de celdas */
 .td-flex {
     display: flex;
+    justify-content: center; /* Todo centrado */
     align-items: center;
-    justify-content: center;
-    gap: 10px;
+    gap: 0px;
     width: 100%;
 }
 
-th,
-td {
-  border: 1px solid rgb(160 160 160);
-  padding: 8px 10px;
-  font-size: large;
+/* Inputs dentro de la tabla */
+td input {
+    text-align: center;
+    border: 1px solid transparent; /* Estilo Excel */
+    height: 24px;
+    font-size: 0.95rem;
 }
 
-.form-container section,
-.poblacion-nif section,
-.factura-datos section {
-    align-items: center;
-}
-
-.buttons{
-    display: flex;
-}
-
-.buttons button{
+td input:focus { border: 1px solid #4CAF50; outline: none; background: #fff; }
+/* 1. Mantiene el bloque en el centro de la celda, pero con una separación fija pequeña */
+.albaran-flex {
+    display: flex !important;
+    justify-content: center !important; 
+    align-items: center !important;
+    gap: 3px !important; /* Solo 5 píxeles de separación real entre "Albarán:" y el número */
     width: 100%;
-    font-size: medium;
+}
+
+/* 2. El truco mágico para la fecha */
+.input-fecha-tabla {
+    width: auto !important;
+    min-width: 105px !important; /* Reducimos el ancho mínimo para que el recuadro sea más ajustado */
+    text-align: left !important; /* LA CLAVE: Pega los números a la izquierda, junto a la palabra */
+    padding-left: 0 !important;  /* Quitamos rellenos invisibles */
+    background: transparent;
+}
+.price { width: 100px; font-weight: bold; }
+
+/* Fila de Albarán (Gris) */
+.albaran-row td { background-color: #f2f2f2; border-top: 2px solid #999; }
+
+/* ==========================================================================
+   6. BOTONES Y TOTALES
+   ========================================================================== */
+.buttons { display: flex; gap: 10px; margin: 15px 0; }
+.buttons button {
+    flex: 1;
+    padding: 10px;
     font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: white;
 }
 
-.totals{
+#add-button, #add-group-btn { background-color: #4CAF50; }
+#remove-button, #remove-btn { background-color: #f44336; }
+#btn-imprimir { background-color: #2196F3; }
+
+.totals {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.totals p { margin: 2px 0; }
+
+/* ==========================================================================
+   7. MODO IMPRESIÓN (Optimizado para A4 y compresión máxima)
+   ========================================================================== */
+@media print {
+    /* 1. Configuración del folio A4 */
+    @page {
+        size: A4;
+        margin: 10mm;
+    }
+
+    /* --- PARCHE PARA EL BUG DE LA "l" y la "I" EN IMPRESIÓN --- */
+    * {
+        /* Forzamos a la impresora a usar Arial, que no tiene este bug */
+        font-family: Arial, Helvetica, sans-serif !important; 
+        /* Quitamos suavizados de pantalla que la impresora no entiende */
+        -webkit-font-smoothing: initial !important; 
+        -webkit-text-stroke: 0 !important;
+        text-rendering: optimizeLegibility !important;
+    }
+
+    body, td, p, span, input, div {
+        /* Todo el texto normal debe ser exactamente 400 (normal), no grosores intermedios */
+        font-weight: 400 !important; 
+    }
+
+    /* Solo aplicamos negrita "pura" (bold/700) a lo que de verdad lo necesita */
+    th, label, .company-name, .company-legal, .totals p, .price, input[readonly], strong, b {
+        font-weight: bold !important;
+    }
+
+    /* 2. Reseteo general y forzar colores (Logo y fondos grises) */
+    body {
+        background: white !important;
+        padding: 0 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    /* 3. Ocultar lo que no debe salir en papel (Botones, título principal...) */
+    .buttons, button, .dashboard-body, h1 {
+        display: none !important;
+    }
+
+    /* 4. Ajustar contenedores para que usen todo el ancho del papel */
+    .container {
+        box-shadow: none !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .invoice-header {
+        border-bottom: 2px solid black !important;
+        page-break-after: avoid;
+        /* EL TRUCO: Quitamos el padding lateral en la impresión para que quede a ras con la tabla */
+        padding: 0 0 10px 0 !important; 
+    }
+
+    /* 5. Convertir formularios en texto plano */
+    input, select {
+        border: none !important;
+        background: transparent !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        height: auto !important; /* Evita que letras como la 'g' o 'p' se corten por debajo */
+    }
+
+    /* Quitar la flechita molesta del desplegable del cliente al imprimir */
+    select {
+        appearance: none !important;
+        -webkit-appearance: none !important;
+    }
+
+    /* 6. Tabla: Bordes negros y compresión extrema */
+    table {
+        width: 100% !important;
+    }
+
+    table, th, td {
+        border: 1px solid black !important;
+    }
+
+    th {
+        background-color: #e0e0e0 !important; /* Gris para la cabecera Concepto/€ */
+        color: black !important;
+    }
+
+    /* Mantener el gris en la fila separadora del Albarán */
+    .albaran-row td {
+        background-color: #f0f0f0 !important;
+    }
+
+    table td {
+        padding: 2px 4px !important;
+        height: 20px !important; /* Muy fino para que quepan muchas filas */
+        line-height: 1.1 !important;
+    }
+
+    /* 7. REGLAS DE ORO PARA EVITAR CORTES FEOS EN 2 PÁGINAS */
+    thead {
+        display: table-header-group; /* Repite "Concepto | €" si salta a la página 2 */
+    }
+
+    tr {
+        page-break-inside: avoid; /* Prohíbe cortar una fila por la mitad */
+        break-inside: avoid;
+    }
+
+    .totals {
+        page-break-inside: avoid; /* Que el bloque de Suma/IVA/Total nunca se divida */
+        break-inside: avoid;
+        margin-top: 10px !important;
+    }
+
+    input[type="date"]::-webkit-calendar-picker-indicator,
+    input[type="date"]::-webkit-inner-spin-button,
+    input[type="date"]::-webkit-clear-button {
+        display: none !important;
+        -webkit-appearance: none !important;
+    }
 }
 
+/* 1. Reducimos el espacio después de la línea azul de la cabecera */
+.invoice-header {
+    padding: 10px 20px 5px 20px; /* Reducido arriba y abajo */
+    margin-bottom: 5px; /* Casi sin margen inferior */
+}
+
+/* 2. Reducimos el relleno interno del contenedor principal */
+.container {
+    padding: 10px 20px; /* Antes era 20px, ahora 10px arriba/abajo */
+}
+
+/* 3. Ajustamos la sección de Factura Nº y Fecha */
+.factura-datos {
+    margin-bottom: 8px; /* Menos separación con el cliente */
+    padding-bottom: 5px; /* Menos espacio hasta la línea gris */
+    gap: 10px;
+}
+
+/* 4. Reducimos el salto de línea entre cada dato del cliente (D, Domicilio, Población) */
+.form-container section, 
+.poblacion-nif {
+    margin-bottom: 4px !important; /* Separación mínima entre líneas de texto */
+    gap: 10px;
+}
+
+/* 5. Ajustamos los párrafos de datos para que no tengan márgenes propios */
+.form-container p, 
+.poblacion-nif p {
+    margin: 0;
+    padding: 0;
+}
+
+/* 6. Si los labels o inputs son muy altos, los afinamos */
+label {
+    font-size: 0.95rem; /* Un pelín más pequeña si es necesario */
+}
+
+input[type="text"], 
+input[type="date"], 
+select {
+    padding: 4px 8px; /* Inputs más delgados */
+}

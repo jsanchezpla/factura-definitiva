@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="../../css/styles.css">
+</head>
+
+<body>
+    <button onclick="window.location.href='dashboard.html'">Volver</button>
+    <h1>Factura 2</h1>
+
+    <div class="invoice-header">
+        <div class="company-data">
+            <h2 class="company-name">Pescados Y Mariscos</h2>
+            <h3 class="company-legal">Hnos. Sánchez Lázaro, S.L.</h3>
+            <p>C.I.F: B 06364566</p>
+            <p>Avda. Marquesa de Pinares 37 — 1º D</p>
+            <p>✉ Email: phsanchezlazaro@gmail.com</p>
+            <p>☎ Pescadería: 924 31 51 02 — Móvil: 645 81 63 91</p>
+        </div>
+
+        <div class="company-logo">
+            <img src="../../assets/logo.png" alt="Logo Pescados y Mariscos"
+                style="width:auto; max-width: 250px; max-height: 5%;">
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="factura-datos">
+            <section>
+                <label>FACTURA Nº</label>
+                <input type="text" id="num-factura" style="background-color: #f0f0f0; font-weight: bold;">
+            </section>
+            <section>
+                <label>Fecha Factura</label>
+                <input type="date" id="fecha-factura">
+            </section>
+        </div>
+
+        <div class="form-container">
+            <section>
+                <label>D:</label>
+                <select id="d-select" name="select"></select>
+            </section>
+            <section>
+                <label>Domicilio:</label>
+                <p id="domicilio"></p>
+            </section>
+            <div class="poblacion-nif">
+                <section>
+                    <label>Población:</label>
+                    <p id="poblacion"></p>
+                </section>
+                <section>
+                    <label>NIF:</label>
+                    <p id="nif"></p>
+                </section>
+            </div>
+        </div>
+
+        <div class="buttons">
+            <button id="add-group-btn"
+                style="background-color: #4CAF50; color: white; padding: 10px 20px; font-size: 16px;">
+                ➕ Nuevo Albarán + Producto
+            </button>
+
+            <button id="remove-btn" style="background-color: #ff0000;">Borrar último</button>
+            <button id="btn-imprimir">🖨️ Imprimir</button>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th class="col-kg">kg</th>
+                    <th class="col-concepto">Concepto</th>
+                    <th class="col-precio-kg">kg/€</th>
+                    <th class="col-total">€</th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+            </tbody>
+        </table>
+
+        <div>
+            <section class="totals">
+                <p id="suma">SUMA: 0,00 €</p>
+                <p id="iva">I.V.A 10%: 0,00 €</p>
+                <p id="total">TOTAL: 0,00 €</p>
+            </section>
+        </div>
+    </div>
+
+    <script src="../js/weight-invoice.js"></script>
+</body>
+
+</html>

@@ -7,18 +7,34 @@
 </head>
 
 <body>
-    <button onclick="window.location.href='inicio.html'">Volver</button>
+    <button onclick="window.location.href='dashboard.html'">Volver</button>
     <h1>Factura 1</h1>
+
+    <div class="invoice-header">
+        <div class="company-data">
+            <h2 class="company-name">Pescados Y Mariscos</h2>
+            <h3 class="company-legal">Hnos. Sánchez Lázaro, S.L.</h3>
+            <p>C.I.F: B 06364566</p>
+            <p>Avda. Marquesa de Pinares 37 — 1º D</p>
+            <p>✉ Email: phsanchezlazaro@gmail.com</p>
+            <p>☎ Pescadería: 924 31 51 02 — Móvil: 645 81 63 91</p>
+        </div>
+
+        <div class="company-logo">
+            <img src="../../assets/logo.png" alt="Logo Pescados y Mariscos"
+                style="width:auto; max-width: 250px; max-height: 5%;">
+        </div>
+    </div>
 
     <div class="container">
         <div class="factura-datos">
             <section>
                 <label>FACTURA Nº</label>
-                <input type="text">
+                <input type="text" id="num-factura" style="background-color: #f0f0f0; font-weight: bold;">
             </section>
             <section>
                 <label>Fecha</label>
-                <input type="date">
+                <input type="date" id="fecha-factura">
             </section>
         </div>
         <div class="form-container">
@@ -43,8 +59,9 @@
             </div>
         </div>
         <div class="buttons">
-            <button id="add-button">Añadir fila</button>
-            <button id="remove-button">Eliminar fila</button>
+            <button id="add-button" style="background-color: #4CAF50; color: white;">Añadir fila</button>
+            <button id="remove-button" style="background-color: #f44336; color: white;">Eliminar fila</button>
+            <button id="btn-imprimir">🖨️ Imprimir</button>
         </div>
 
         <table>
@@ -68,7 +85,7 @@
     </div>
 
 
-    <script src="../js/facturaNormal.js"></script>
+    <script src="../js/standard-invoice.js"></script>
 </body>
 
 </html>
