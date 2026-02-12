@@ -136,7 +136,7 @@ function agregarFila () {
   // Columna 2: Precio
   const tdPrecio = document.createElement("td");
   const divPrecio = document.createElement("div");
-  divPrecio.className = "td-flex";
+  divPrecio.className = "td-flex"; // Esto alinea el input y el € en fila
 
   const inputPrecio = document.createElement("input");
   inputPrecio.type = "number";
@@ -145,10 +145,26 @@ function agregarFila () {
   inputPrecio.placeholder = "0.00";
   inputPrecio.className = "price";
 
-  // Escuchar cambios para recalcular
+  // 1. Escuchar cuando se escribe para sumar en tiempo real
   inputPrecio.addEventListener("input", recalcularTotales);
 
+  // 2. Formatear a 2 decimales al salir (5 -> 5.00)
+  inputPrecio.addEventListener("change", function () {
+    if (this.value) {
+      this.value = parseFloat(this.value).toFixed(2);
+    }
+  });
+
+  // --- NUEVO: CREAMOS EL SÍMBOLO € ---
+  const simboloEuro = document.createElement("span");
+  simboloEuro.textContent = "€";
+  simboloEuro.style.marginLeft = "2px";
+  simboloEuro.style.fontWeight = "bold";
+
+  // Añadimos primero el input y luego el símbolo al contenedor flex
   divPrecio.appendChild(inputPrecio);
+  divPrecio.appendChild(simboloEuro);
+
   tdPrecio.appendChild(divPrecio);
 
   // Añadir a la fila y luego a la tabla

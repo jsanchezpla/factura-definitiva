@@ -62,6 +62,8 @@ function parseCSVLine (linea) {
 const tableBody = document.getElementById("table-body");
 
 document.getElementById("add-group-btn").addEventListener("click", () => {
+  const tableBody = document.getElementById("table-body"); // Aseguramos que tenemos la tabla
+
   // PASO 1: Crear fila de FECHA (Albarán)
   const rowFecha = document.createElement("tr");
   rowFecha.classList.add("albaran-row");
@@ -79,7 +81,6 @@ document.getElementById("add-group-btn").addEventListener("click", () => {
   const inputFecha = document.createElement("input");
   inputFecha.type = "date";
   inputFecha.classList.add("input-fecha-tabla");
-  // Opcional: poner la fecha de hoy por defecto
   inputFecha.valueAsDate = new Date();
 
   divFlex.appendChild(labelTexto);
@@ -90,30 +91,42 @@ document.getElementById("add-group-btn").addEventListener("click", () => {
   // PASO 2: Crear fila de PRODUCTO (Datos)
   const rowProd = document.createElement("tr");
 
-  // Columna KG
+  // --- COLUMNA KG ---
   const tdKg = document.createElement("td");
   const inputKg = document.createElement("input");
   inputKg.type = "number";
   inputKg.step = "0.01";
   inputKg.placeholder = "0.00";
+
+  // TRUCO: Formatear a 2 decimales al salir
+  inputKg.addEventListener("change", function () {
+    if (this.value) this.value = parseFloat(this.value).toFixed(2);
+  });
+
   tdKg.appendChild(inputKg);
 
-  // Columna Concepto
+  // --- COLUMNA CONCEPTO ---
   const tdConcepto = document.createElement("td");
   const inputConcepto = document.createElement("input");
   inputConcepto.type = "text";
   inputConcepto.placeholder = "Producto...";
   tdConcepto.appendChild(inputConcepto);
 
-  // Columna Precio/Kg
+  // --- COLUMNA PRECIO/KG ---
   const tdPrecioKg = document.createElement("td");
   const inputPrecioKg = document.createElement("input");
   inputPrecioKg.type = "number";
   inputPrecioKg.step = "0.01";
   inputPrecioKg.placeholder = "0.00";
+
+  // TRUCO: Formatear a 2 decimales al salir
+  inputPrecioKg.addEventListener("change", function () {
+    if (this.value) this.value = parseFloat(this.value).toFixed(2);
+  });
+
   tdPrecioKg.appendChild(inputPrecioKg);
 
-  // Columna Total
+  // --- COLUMNA TOTAL ---
   const tdTotal = document.createElement("td");
   const inputTotal = document.createElement("input");
   inputTotal.type = "text";
